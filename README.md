@@ -1,8 +1,31 @@
-# React + Vite
+# reactnoteapp
+Desarrollada mediante React, esta es una aplicación de notas que permite a los usuarios crear, ver y filtrar notas importantes. La aplicación utiliza el paquete json-server para almacenar y recuperar datos sobre las notas.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Instalación
+Para instalar y configurar el proyecto, sigue estos pasos:
 
-Currently, two official plugins are available:
+Clona el repositorio desde GitHub:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`git clone https://github.com/carlosfermed/reactnoteapp.git`
+
+Navega al directorio del proyecto:
+
+`cd tu-repositorio`
+
+Instala las dependencias necesarias utilizando npm:
+
+`npm install`
+
+Pon en marcha el servidor mediante el paquete json-server del propio proyecto:
+
+`npm run server`
+
+Ejecuta la aplicación y dirigete a la URL indicada en la terminal para visualizar la interfaz:
+
+`npm run start`
+
+## Uso:
+La aplicación tiene una interfaz intuitiva y sencilla de usar. Cada botón tiene una pequeña descripción acerca de su funcionamiento.
+
+## Estado del proyecto:
+El proyecto está activo y en estado de mejora continua en caso de que tengas alguna sugerencia.
