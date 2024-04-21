@@ -18,6 +18,8 @@ form {
 
 fieldset {
   background-color: rgb(236, 207, 168);
+  padding: 25px;
+  margin-bottom: 40px;
 }
 
 input[type=text] {

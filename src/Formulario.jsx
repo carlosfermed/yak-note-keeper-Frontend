@@ -5,7 +5,7 @@ const Formulario = () => {
   const [note, setNote] = useState({
     id: "", 
     content: "", 
-    important: false
+    important: "false"
   })
 
   const sendData = () => {
@@ -41,7 +41,7 @@ const Formulario = () => {
         SI <input type='radio' name='important' value='true' onChange={addNote} />
         NO <input type='radio' name='important' value='false' onChange={addNote} />
         <br/><br/>
-        <button onClick={sendData}>Enviar datos (POST)</button>
+        <button onClick={sendData} title="Escribe la nota en la lista">Enviar datos (POST)</button>
       </form>
     </>
   )

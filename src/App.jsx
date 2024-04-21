@@ -21,9 +21,9 @@ const App = () => {
     <>
       <fieldset>
         <legend>Manipulación de notas</legend>
-        <Formulario notesArray={notesArray}/>
+        <Formulario notesArray={notesArray} />
         <br/>
-        <button onClick={fetchData}>Actualizar notas (Fetch)</button>
+        <button onClick={fetchData} title="Solo en caso de borrar datos manualmente del fichero db.json">Actualizar notas (Fetch)</button>
       </fieldset>
       <ul>
         {notesArray.map(note => <li key={note.id}>{note.content}</li>)}
