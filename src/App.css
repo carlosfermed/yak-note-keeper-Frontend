@@ -29,6 +29,6 @@ input[type=text] {
 }
 
 button {
-  margin: auto;
+  margin: 10px auto;
   width: 200px;
 }
