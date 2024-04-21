@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import { Formulario } from './Formulario'
+import { Formulario } from './components/Formulario'
 
 const App = () => {
 
