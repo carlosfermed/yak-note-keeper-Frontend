@@ -1,42 +1,51 @@
-import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import Login from './routes/Login'
+import Notes from './routes/Notes'
+import { useState } from 'react'
 import './App.css'
-import { Formulario } from './components/Formulario'
 
-const App = () => {
+function App() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userName, setUserName] = useState("");
 
-  const [notesArray, setNotesArray] = useState([])
-  const [showAll, setShowAll] = useState(true);  
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+    const handleLogin = (username) => {
+        setUserName(username);
+        setIsAuthenticated(true);
+    };
 
-  const fetchData = () => {
-    fetch("http://localhost:3001/notes")
-      .then(response => response.json())
-      .then(data => setNotesArray(data))
-      .catch(err => console.log(err))    
-  }
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+    };
 
-  return (
-    <>
-      <fieldset>
-        <legend>Manipulación de notas</legend>
-        <Formulario notesArray={notesArray} />
-        <button onClick={() => setShowAll(!showAll)} title="Alterna la muestra de notas importantes">Mostrar Todo/Importantes</button>
-        <br/>
-        <button onClick={fetchData} title="Solo en caso de borrar datos manualmente del fichero db.json">Actualizar notas (Fetch)</button>
-      </fieldset>
-      <ul>
-        {showAll 
-          ? 
-          notesArray.map(note => <li key={note.id}>{note.content}</li>)
-          :
-          notesArray.map(note => note.important === "true" ? <li key={note.id}>{note.content}</li> : <li key={note.id}></li>)
-        }
-      </ul>
-    </>
-  )
+    return (
+        <Router>
+            <div className="App">
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            isAuthenticated ? (
+                                <Navigate to="/notes" />
+                            ) : (
+                                <Login onLogin={handleLogin} />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/notes"
+                        element={
+                            isAuthenticated ? (
+                                <Notes onLogout={handleLogout} userName={userName} />
+                            ) : (
+                                <Navigate to="/" />
+                            )
+                        }
+                    />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App

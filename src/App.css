@@ -11,6 +11,10 @@ ul {
   text-align: left;
 }
 
+h3 {
+    color: rgb(104, 153, 30);
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -31,4 +35,9 @@ input[type=text] {
 button {
   margin: 10px auto;
   width: 200px;
+}
+
+.customInput {
+    width: 200px;
+    margin: auto;
 }
