@@ -13,10 +13,18 @@ const Notes = ({ onLogout, userName }) => {
     }, [])
 
     const fetchData = () => {
-        fetch("http://localhost:3001/notes")
-            .then(response => response.json())
-            .then(data => setNotesArray(data))
-            .catch(err => console.log(err))
+        axios.get('http://localhost:3000/protected', {
+            withCredentials: true 
+        })
+        .then(response => { setNotesArray(response.data) })
+        .catch(err => {
+            console.log(err);
+            if (err.response && err.response.status === 401) {
+                console.error('No autorizado');
+            } else {
+                console.error('Error en la petición');
+            }
+        });
     }
 
     const handleLogout = async () => {
@@ -42,11 +50,11 @@ const Notes = ({ onLogout, userName }) => {
             <fieldset>
                 <legend>Manipulación de notas</legend>
                 <Formulario notesArray={notesArray} onUpdate={fetchData} />
-                <button onClick={() => setShowAll(!showAll)} title="Alterna la muestra de notas importantes">Mostrar Todo/Importantes</button>
+                <button onClick={() => setShowAll(!showAll)} className="customButton" title="Alterna la muestra de notas importantes">Mostrar Todo/Importantes</button>
                 <br />
-                <button onClick={fetchData} title="Solo en caso de borrar datos manualmente del fichero db.json">Actualizar notas (Fetch)</button>
+                <button onClick={fetchData} className="customButton" title="Solo en caso de borrar datos manualmente del fichero db.json">Actualizar notas (Fetch)</button>
                 <br />
-                <button onClick={handleLogout} title="Finaliza la sesión">Cerrar sesión</button>
+                <button onClick={handleLogout} className="customButton" title="Finaliza la sesión">Cerrar sesión</button>
             </fieldset>
             <ul>
                 {showAll

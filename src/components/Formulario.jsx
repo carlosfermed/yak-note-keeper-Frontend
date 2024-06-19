@@ -27,7 +27,7 @@ const Formulario = ({ onUpdate }) => {
 
     const addNote = (e) => {
         // console.log('e.target.name :>> ', e.target.name);
-        console.log('e.target.value :>> ', e.target.value);
+        // console.log('e.target.value :>> ', e.target.value);
         setNote({
             ...note,
             id: Date.now().toString(),
@@ -38,13 +38,13 @@ const Formulario = ({ onUpdate }) => {
     return (
         <>
             <form onSubmit={sendData}>
-                Contenido de la nota: <input type='text' name='content' value={note.content} onChange={addNote} />
+                Contenido de la nota: <input type='text' name='content' className="customInput" value={note.content} onChange={addNote} />
                 <br />
                 <span className='tituloRadio'>Es importante: </span>
                 SI <input type='radio' name='important' value='true' onChange={addNote} />
                 NO <input type='radio' name='important' value='false' onChange={addNote} />
                 <br /><br />
-                <button type="submit" title="Escribe la nota en la lista">Enviar datos (POST)</button>
+                <button type="submit" className="customButton" title="Escribe la nota en la lista">Enviar datos (POST)</button>
             </form>
         </>
     )

@@ -31,23 +31,18 @@
       "important": "true"
     },
     {
-      "id": "1718444681877",
-      "content": "Nota a tener en cuenta",
-      "important": "true"
-    },
-    {
       "id": "1718444696253",
-      "content": "Es un nota sin importancia",
+      "content": "Es una nota sin importancia.",
       "important": "false"
     },
     {
-      "id": "1718557803223",
-      "content": "Nota recordatorio de cita medica",
+      "id": "1718563093079",
+      "content": "Nota a tener en cuenta para gestión de código.",
       "important": "true"
     },
     {
-      "id": "1718563093079",
-      "content": "Nota a tener en cuenta para gestión de código",
+      "id": "1718710918389",
+      "content": "Cita médica dia 24/7/24 Dr. Rubio.",
       "important": "true"
     }
   ]
