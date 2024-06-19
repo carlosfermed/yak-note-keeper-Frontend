@@ -24,7 +24,7 @@ const Login = ({ onLogin }) => {
                 throw new Error('El proceso de login ha fallado.');
             }
         } catch (error) {
-            console.error('Login error:', error.message);
+            console.error('Login error:', error.response.data);
         }
     };
 
@@ -40,7 +40,8 @@ const Login = ({ onLogin }) => {
             if (response.status === 201) {
                 console.log(response.data.message); // Mensaje de éxito en el registro mostrado en consola.
                 alert(response.data.message);       // Mensaje de éxito en el registro mostrado al usuario.
-
+                setUsername("");
+                setPassword("");
             } else {
                 throw new Error('Se ha producido un error al intentar crear el usuario.');
             }
