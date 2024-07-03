@@ -10,16 +10,17 @@ const Formulario = ({ onUpdate }) => {
 
     const sendData = (e) => {
         e.preventDefault();
-        fetch("http://localhost:3001/notes", {
+        fetch("http://localhost:3000/protected", {
             method: "POST",
             body: JSON.stringify(note),
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include"
         })
             .then(response => response.json())
-            .then(note => { 
-                console.log("Nueva nota añadida: ", note);
+            .then(responseMessage => { 
+                console.log("response Message: ", responseMessage.message);
                 onUpdate();    
             })
             .catch(err => console.log(err));

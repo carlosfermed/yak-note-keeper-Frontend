@@ -11,7 +11,8 @@ const Notes = ({ onLogout, userName }) => {
     useEffect(() => {
         fetchData()
     }, [])
-
+    
+    // Promesa clásica.
     const fetchData = () => {
         axios.get('http://localhost:3000/protected', {
             withCredentials: true 
@@ -20,13 +21,13 @@ const Notes = ({ onLogout, userName }) => {
         .catch(err => {
             console.log(err);
             if (err.response && err.response.status === 401) {
-                console.error('No autorizado');
+                console.error('No autorizado.');
             } else {
-                console.error('Error en la petición');
+                console.error('Error en la petición.');
             }
         });
     }
-
+    // Async/await
     const handleLogout = async () => {
         try {
             const response = await axios.post('http://localhost:3000/logout', {}, { withCredentials: true });
@@ -35,10 +36,10 @@ const Notes = ({ onLogout, userName }) => {
                 console.log(response.data.message);
                 onLogout();
             } else {
-                console.error('Logout failed');
+                console.error('Logout fallido.');
             }
         } catch (error) {
-            console.error('Logout failed', error);
+            console.error('Logout fallido.', error);
         }
     };
     
