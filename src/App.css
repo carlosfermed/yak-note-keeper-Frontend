@@ -28,7 +28,7 @@ fieldset {
 
 .customButton {
     margin: 10px auto;
-    width: 200px;
+    width: 240px;
     padding: 3px;
     color: #333;
     border: 2px solid #c01f1f;
@@ -43,6 +43,6 @@ fieldset {
 }
 
 .customInput {
-    width: 200px;
-    margin: auto;
+    width: 230px;
+    margin: 5px auto;
 }

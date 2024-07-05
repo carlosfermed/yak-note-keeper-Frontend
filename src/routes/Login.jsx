@@ -10,7 +10,7 @@ const Login = ({ onLogin }) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:3000/login", {
+            const response = await axios.post("http://localhost:3000/authsession/login", {
                 username,
                 password
             }, {
@@ -24,7 +24,7 @@ const Login = ({ onLogin }) => {
                 throw new Error('El proceso de login ha fallado.');
             }
         } catch (error) {
-            console.error('Login error:', error.response.data);
+            console.error('Login error:', error.response.data.message);
         }
     };
 
@@ -32,7 +32,7 @@ const Login = ({ onLogin }) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:3000/register", {
+            const response = await axios.post("http://localhost:3000/authsession/register", {
                 username,
                 password
             });
@@ -52,14 +52,15 @@ const Login = ({ onLogin }) => {
 
     return (
         <div className="userForm">
+            <h1>Yak Note Keeper</h1>
             <fieldset>
-            <legend>Gestión de usuarios</legend>
-            <form onSubmit={handleLogin}>
-                Username: <input className="customInput" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                Password: <input className="customInput" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button className="customButton" type="submit">Login</button>
-                <button className="customButton" onClick={handleRegister} type="submit">Registrar</button>
-            </form>
+                <legend>Gestión de usuarios</legend>
+                <form onSubmit={handleLogin}>
+                    Username: <input className="customInput" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    Password: <input className="customInput" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button className="customButton" type="submit">Login</button>
+                    <button className="customButton" onClick={handleRegister} type="submit">Registrar</button>
+                </form>
             </fieldset>
         </div>
     );

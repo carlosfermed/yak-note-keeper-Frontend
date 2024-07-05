@@ -6,15 +6,15 @@ import axios from 'axios'
 const Notes = ({ onLogout, userName }) => {
 
     const [notesArray, setNotesArray] = useState([])
-    const [showAll, setShowAll] = useState(true);
+    const [showAll, setShowAll] = useState(true);    
 
     useEffect(() => {
         fetchData()
     }, [])
-    
+
     // Promesa clásica.
     const fetchData = () => {
-        axios.get('http://localhost:3000/protected', {
+        axios.get('http://localhost:3000/authsession/protected', {
             withCredentials: true 
         })
         .then(response => { setNotesArray(response.data) })
@@ -27,10 +27,25 @@ const Notes = ({ onLogout, userName }) => {
             }
         });
     }
+
+    const fetchSensitiveData = () => {
+        axios.get('http://localhost:3000/authtoken/protectedinfo', {
+            withCredentials: true 
+        })
+        .then(response => console.log(response.data))
+        .catch(err => {
+            console.log("ERROR", err);
+            if (err.response && err.response.status === 401) {
+                console.error('No autorizado acceso a esta información.');
+            } else {
+                console.error('Error en la petición.');
+            }
+        });
+    }
     // Async/await
     const handleLogout = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/logout', {}, { withCredentials: true });
+            const response = await axios.post('http://localhost:3000/authsession/logout', {}, { withCredentials: true });
     
             if (response.status === 200) {
                 console.log(response.data.message);
@@ -46,14 +61,16 @@ const Notes = ({ onLogout, userName }) => {
 
     return (
         <>
-            <h1>React Note Application</h1>
+            <h1>Yak Note Keeper</h1>
             <h3>Bienvenido/a <i>{userName}</i> </h3>
             <fieldset>
                 <legend>Manipulación de notas</legend>
                 <Formulario notesArray={notesArray} onUpdate={fetchData} />
-                <button onClick={() => setShowAll(!showAll)} className="customButton" title="Alterna la muestra de notas importantes">Mostrar Todo/Importantes</button>
+                <button onClick={() => setShowAll(!showAll)} className="customButton" title="Alterna la muestra de notas importantes">Mostrar Todo/Solo importantes</button>
                 <br />
                 <button onClick={fetchData} className="customButton" title="Solo en caso de borrar datos manualmente del fichero db.json">Actualizar notas (Fetch)</button>
+                <br />
+                <button onClick={fetchSensitiveData} className="customButton" title="Muestra información verificando al usuario a través de JWT">Datos privados (JWT)</button>
                 <br />
                 <button onClick={handleLogout} className="customButton" title="Finaliza la sesión">Cerrar sesión</button>
             </fieldset>

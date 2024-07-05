@@ -10,7 +10,7 @@ const Formulario = ({ onUpdate }) => {
 
     const sendData = (e) => {
         e.preventDefault();
-        fetch("http://localhost:3000/protected", {
+        fetch("http://localhost:3000/authsession/protected", {
             method: "POST",
             body: JSON.stringify(note),
             headers: {
@@ -40,11 +40,10 @@ const Formulario = ({ onUpdate }) => {
         <>
             <form onSubmit={sendData}>
                 Contenido de la nota: <input type='text' name='content' className="customInput" value={note.content} onChange={addNote} />
-                <br />
-                <span className='tituloRadio'>Es importante: </span>
+                <span className='tituloRadio'>La nota es importante: </span>
                 SI <input type='radio' name='important' value='true' onChange={addNote} />
                 NO <input type='radio' name='important' value='false' onChange={addNote} />
-                <br /><br />
+                <br />
                 <button type="submit" className="customButton" title="Escribe la nota en la lista">Enviar datos (POST)</button>
             </form>
         </>
